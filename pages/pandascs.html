@@ -138,9 +138,17 @@
                 <div class="code-block relative bg-dark/60 rounded-xl p-4 font-mono text-sm">
                     <button onclick="copyCode(this)"
                         class="absolute top-3 right-3 px-2 py-1 bg-white/5 hover:bg-white/10 rounded text-xs text-gray-400 transition"><i
-                            class="far fa-copy mr-1"></i>Copy</button>
-                    <code><span class="kw">import</span> <span class="mod">pandas</span> <span class="kw">as</span> <span class="mod">pd</span>
-<span class="kw">import</span> <span class="mod">numpy</span> <span class="kw">as</span> <span class="mod">np</span></code>
+                            class="far fa-copy mr-1"></i>Copy
+                    </button>
+                    <code>
+                        <span class="kw">import</span> <span class="mod">pandas</span> <span class="kw">as</span> <span class="mod">pd</span>
+                        <br>
+                        <span class="kw">import</span> <span class="mod">numpy</span> <span class="kw">as</span> <span class="mod">np</span>
+                        <br>
+                        <span class="kw">import</span> <span class="mod">matplotlib.pyplot</span> <span class="kw">as</span> <span class="mod">plt</span>
+                        <br>
+                        <span class="kw">import</span> <span class="mod">seaborn</span> <span class="kw">as</span> <span class="mod">sns</span>
+                    </code>
                 </div>
             </div>
 
@@ -153,11 +161,17 @@
                     <button onclick="copyCode(this)"
                         class="absolute top-3 right-3 px-2 py-1 bg-white/5 hover:bg-white/10 rounded text-xs text-gray-400 transition"><i
                             class="far fa-copy mr-1"></i>Copy</button>
-                    <code><span class="obj">df</span> = pd.<span class="fn">read_csv</span>(<span class="str">'data.csv'</span>)
-<span class="obj">df</span> = pd.<span class="fn">read_excel</span>(<span class="str">'data.xlsx'</span>, sheet_name=<span class="str">'Sheet1'</span>)
-<span class="obj">df</span> = pd.<span class="fn">read_sql</span>(<span class="str">'SELECT * FROM table'</span>, conn)
-<span class="obj">df</span> = pd.<span class="fn">read_json</span>(<span class="str">'data.json'</span>)
-<span class="obj">df</span> = pd.<span class="fn">read_parquet</span>(<span class="str">'data.parquet'</span>)</code>
+                    <code>
+                        <span class="obj">df</span> = pd.<span class="fn">read_csv</span>(<span class="str">'data.csv'</span>)
+                        <br>
+                        <span class="obj">df</span> = pd.<span class="fn">read_excel</span>(<span class="str">'data.xlsx'</span>, sheet_name=<span class="str">'Sheet1'</span>)
+                        <br>
+                        <span class="obj">df</span> = pd.<span class="fn">read_sql</span>(<span class="str">'SELECT * FROM table'</span>, conn)
+                        <br>
+                        <span class="obj">df</span> = pd.<span class="fn">read_json</span>(<span class="str">'data.json'</span>)
+                        <br>
+                        <span class="obj">df</span> = pd.<span class="fn">read_parquet</span>(<span class="str">'data.parquet'</span>)
+                    </code>
                 </div>
             </div>
 
@@ -170,14 +184,22 @@
                     <button onclick="copyCode(this)"
                         class="absolute top-3 right-3 px-2 py-1 bg-white/5 hover:bg-white/10 rounded text-xs text-gray-400 transition"><i
                             class="far fa-copy mr-1"></i>Copy</button>
-                    <code><span class="obj">df</span>.<span class="fn">head</span>(<span class="num">5</span>)           <span class="cm"># Baris awal</span>
-<span class="obj">df</span>.<span class="fn">tail</span>(<span class="num">3</span>)           <span class="cm"># Baris akhir</span>
-<span class="obj">df</span>.<span class="fn">info</span>()            <span class="cm"># Tipe data & null count</span>
-<span class="obj">df</span>.<span class="fn">describe</span>()        <span class="cm"># Statistik numerik</span>
-<span class="obj">df</span>.<span class="fn">shape</span>             <span class="cm"># (rows, cols)</span>
-<span class="obj">df</span>.<span class="fn">dtypes</span>            <span class="cm"># Tipe data per kolom</span>
-<span class="obj">df</span>.<span class="fn">columns</span>           <span class="cm"># Nama kolom</span>
-<span class="obj">df</span>.<span class="fn">nunique</span>()         <span class="cm"># Jumlah nilai unik</span></code>
+                    <code>
+                        <span class="obj">df</span>.<span class="fn">head</span>(<span class="num">5</span>)           <span class="cm"># Baris awal</span>
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">tail</span>(<span class="num">3</span>)           <span class="cm"># Baris akhir</span>
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">info</span>()            <span class="cm"># Tipe data & null count</span>
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">describe</span>()        <span class="cm"># Statistik numerik</span>
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">shape</span>             <span class="cm"># (rows, cols)</span>
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">dtypes</span>            <span class="cm"># Tipe data per kolom</span>
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">columns</span>           <span class="cm"># Nama kolom</span>
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">nunique</span>()         <span class="cm"># Jumlah nilai unik</span></code>
                 </div>
             </div>
 
@@ -190,12 +212,19 @@
                     <button onclick="copyCode(this)"
                         class="absolute top-3 right-3 px-2 py-1 bg-white/5 hover:bg-white/10 rounded text-xs text-gray-400 transition"><i
                             class="far fa-copy mr-1"></i>Copy</button>
-                    <code><span class="obj">df</span>[<span class="str">'col'</span>]            <span class="cm"># Pilih 1 kolom (Series)</span>
-<span class="obj">df</span>[[<span class="str">'a'</span>, <span class="str">'b'</span>]]        <span class="cm"># Pilih beberapa kolom</span>
-<span class="obj">df</span>.<span class="fn">iloc</span>[<span class="num">0:5</span>]         <span class="cm"># Berdasarkan posisi (row)</span>
-<span class="obj">df</span>.<span class="fn">loc</span>[<span class="num">0:5</span>, <span class="str">'col'</span>]    <span class="cm"># Berdasarkan label/index</span>
-<span class="obj">df</span>[<span class="obj">df</span>[<span class="str">'age'</span>] > <span class="num">25</span>]    <span class="cm"># Filter condition</span>
-<span class="obj">df</span>[<span class="obj">df</span>[<span class="str">'city'</span>].<span class="fn">isin</span>([<span class="str">'JKT'</span>, <span class="str">'BDG'</span>])]</code>
+                    <code>
+                        <span class="obj">df</span>[<span class="str">'col'</span>]            <span class="cm"># Pilih 1 kolom (Series)</span>
+                        <br>
+                        <span class="obj">df</span>[[<span class="str">'a'</span>, <span class="str">'b'</span>]]        <span class="cm"># Pilih beberapa kolom</span>
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">iloc</span>[<span class="num">0:5</span>]         <span class="cm"># Berdasarkan posisi (row)</span>
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">loc</span>[<span class="num">0:5</span>, <span class="str">'col'</span>]    <span class="cm"># Berdasarkan label/index</span>
+                        <br>
+                        <span class="obj">df</span>[<span class="obj">df</span>[<span class="str">'age'</span>] > <span class="num">25</span>]    <span class="cm"># Filter condition</span>
+                        <br>
+                        <span class="obj">df</span>[<span class="obj">df</span>[<span class="str">'city'</span>].<span class="fn">isin</span>([<span class="str">'JKT'</span>, <span class="str">'BDG'</span>])]
+                    </code>
                 </div>
             </div>
 
@@ -208,12 +237,19 @@
                     <button onclick="copyCode(this)"
                         class="absolute top-3 right-3 px-2 py-1 bg-white/5 hover:bg-white/10 rounded text-xs text-gray-400 transition"><i
                             class="far fa-copy mr-1"></i>Copy</button>
-                    <code><span class="obj">df</span>.<span class="fn">dropna</span>()                  <span class="cm"># Hapus baris null</span>
-<span class="obj">df</span>.<span class="fn">fillna</span>(<span class="num">0</span>)                   <span class="cm"># Isi null dengan 0</span>
-<span class="obj">df</span>[<span class="str">'col'</span>].<span class="fn">fillna</span>(method=<span class="str">'ffill'</span>) <span class="cm"># Forward fill</span>
-<span class="obj">df</span>.<span class="fn">drop_duplicates</span>(subset=[<span class="str">'id'</span>]) <span class="cm"># Hapus duplikat</span>
-<span class="obj">df</span>.<span class="fn">rename</span>(columns={<span class="str">'old'</span>: <span class="str">'new'</span>})
-<span class="obj">df</span>[<span class="str">'col'</span>] = <span class="obj">df</span>[<span class="str">'col'</span>].<span class="fn">astype</span>(<span class="fn">int</span>)</code>
+                    <code>
+                        <span class="obj">df</span>.<span class="fn">dropna</span>()                  <span class="cm"># Hapus baris null</span>
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">fillna</span>(<span class="num">0</span>)                   <span class="cm"># Isi null dengan 0</span>
+                        <br>
+                        <span class="obj">df</span>[<span class="str">'col'</span>].<span class="fn">fillna</span>(method=<span class="str">'ffill'</span>) <span class="cm"># Forward fill</span>
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">drop_duplicates</span>(subset=[<span class="str">'id'</span>]) <span class="cm"># Hapus duplikat</span>
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">rename</span>(columns={<span class="str">'old'</span>: <span class="str">'new'</span>})
+                        <br>
+                        <span class="obj">df</span>[<span class="str">'col'</span>] = <span class="obj">df</span>[<span class="str">'col'</span>].<span class="fn">astype</span>(<span class="fn">int</span>)
+                    </code>
                 </div>
             </div>
 
@@ -226,11 +262,17 @@
                     <button onclick="copyCode(this)"
                         class="absolute top-3 right-3 px-2 py-1 bg-white/5 hover:bg-white/10 rounded text-xs text-gray-400 transition"><i
                             class="far fa-copy mr-1"></i>Copy</button>
-                    <code><span class="obj">df</span>[<span class="str">'total'</span>] = <span class="obj">df</span>[<span class="str">'qty'</span>] * <span class="obj">df</span>[<span class="str">'price'</span>]
-<span class="obj">df</span>[<span class="str">'status'</span>] = <span class="obj">df</span>[<span class="str">'score'</span>].<span class="fn">apply</span>(<span class="kw">lambda</span> x: <span class="str">'Lulus'</span> <span class="kw">if</span> x >= <span class="num">70</span> <span class="kw">else</span> <span class="str">'Gagal'</span>)
-<span class="obj">df</span>[<span class="str">'name'</span>] = <span class="obj">df</span>[<span class="str">'name'</span>].<span class="fn">str</span>.<span class="fn">lower</span>.<span class="fn">strip</span>()
-<span class="obj">df</span>[<span class="str">'birth'</span>] = pd.<span class="fn">to_datetime</span>(<span class="obj">df</span>[<span class="str">'birth'</span>])
-<span class="obj">df</span>[<span class="str">'age'</span>] = pd.<span class="fn">Timestamp</span>.<span class="fn">now</span>().year - <span class="obj">df</span>[<span class="str">'birth'</span>].<span class="fn">dt</span>.year</code>
+                    <code>
+                        <span class="obj">df</span>[<span class="str">'total'</span>] = <span class="obj">df</span>[<span class="str">'qty'</span>] * <span class="obj">df</span>[<span class="str">'price'</span>]
+                        <br>
+                        <span class="obj">df</span>[<span class="str">'status'</span>] = <span class="obj">df</span>[<span class="str">'score'</span>].<span class="fn">apply</span>(<span class="kw">lambda</span> x: <span class="str">'Lulus'</span> <span class="kw">if</span> x >= <span class="num">70</span> <span class="kw">else</span> <span class="str">'Gagal'</span>)
+                        <br>
+                        <span class="obj">df</span>[<span class="str">'name'</span>] = <span class="obj">df</span>[<span class="str">'name'</span>].<span class="fn">str</span>.<span class="fn">lower</span>.<span class="fn">strip</span>()
+                        <br>
+                        <span class="obj">df</span>[<span class="str">'birth'</span>] = pd.<span class="fn">to_datetime</span>(<span class="obj">df</span>[<span class="str">'birth'</span>])
+                        <br>
+                        <span class="obj">df</span>[<span class="str">'age'</span>] = pd.<span class="fn">Timestamp</span>.<span class="fn">now</span>().year - <span class="obj">df</span>[<span class="str">'birth'</span>].<span class="fn">dt</span>.year
+                    </code>
                 </div>
             </div>
 
@@ -243,10 +285,15 @@
                     <button onclick="copyCode(this)"
                         class="absolute top-3 right-3 px-2 py-1 bg-white/5 hover:bg-white/10 rounded text-xs text-gray-400 transition"><i
                             class="far fa-copy mr-1"></i>Copy</button>
-                    <code><span class="obj">df</span>.<span class="fn">groupby</span>(<span class="str">'city'</span>)[<span class="str">'sales'</span>].<span class="fn">sum</span>()
-<span class="obj">df</span>.<span class="fn">groupby</span>([<span class="str">'dept'</span>, <span class="str">'city'</span>]).<span class="fn">agg</span>({<span class="str">'salary'</span>: [<span class="str">'mean'</span>, <span class="str">'max'</span>, <span class="str">'count'</span>]})
-<span class="obj">df</span>.<span class="fn">pivot_table</span>(index=<span class="str">'month'</span>, columns=<span class="str">'product'</span>, values=<span class="str">'sales'</span>, aggfunc=<span class="str">'sum'</span>)
-<span class="obj">df</span>.<span class="fn">crosstab</span>(<span class="obj">df</span>[<span class="str">'gender'</span>], <span class="obj">df</span>[<span class="str">'purchased'</span>])</code>
+                    <code>
+                        <span class="obj">df</span>.<span class="fn">groupby</span>(<span class="str">'city'</span>)[<span class="str">'sales'</span>].<span class="fn">sum</span>()
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">groupby</span>([<span class="str">'dept'</span>, <span class="str">'city'</span>]).<span class="fn">agg</span>({<span class="str">'salary'</span>: [<span class="str">'mean'</span>, <span class="str">'max'</span>, <span class="str">'count'</span>]})
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">pivot_table</span>(index=<span class="str">'month'</span>, columns=<span class="str">'product'</span>, values=<span class="str">'sales'</span>, aggfunc=<span class="str">'sum'</span>)
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">crosstab</span>(<span class="obj">df</span>[<span class="str">'gender'</span>], <span class="obj">df</span>[<span class="str">'purchased'</span>])
+                    </code>
                 </div>
             </div>
 
@@ -259,12 +306,17 @@
                     <button onclick="copyCode(this)"
                         class="absolute top-3 right-3 px-2 py-1 bg-white/5 hover:bg-white/10 rounded text-xs text-gray-400 transition"><i
                             class="far fa-copy mr-1"></i>Copy</button>
-                    <code>pd.<span class="fn">concat</span>([<span class="obj">df1</span>, <span class="obj">df2</span>], axis=<span class="num">0</span>)  <span class="cm"># Stack vertikal</span>
-pd.<span class="fn">concat</span>([<span class="obj">df1</span>, <span class="obj">df2</span>], axis=<span class="num">1</span>)  <span class="cm"># Stack horizontal</span>
-
-pd.<span class="fn">merge</span>(<span class="obj">df1</span>, <span class="obj">df2</span>, on=<span class="str">'id'</span>, how=<span class="str">'inner'</span>)  <span class="cm"># default: inner</span>
-pd.<span class="fn">merge</span>(<span class="obj">df1</span>, <span class="obj">df2</span>, left_on=<span class="str">'a'</span>, right_on=<span class="str">'b'</span>, how=<span class="str">'left'</span>)
-<span class="obj">df1</span>.<span class="fn">join</span>(<span class="obj">df2</span>, how=<span class="str">'outer'</span>, lsuffix=<span class="str">'_l'</span>, rsuffix=<span class="str">'_r'</span>)</code>
+                    <code>
+                        pd.<span class="fn">concat</span>([<span class="obj">df1</span>, <span class="obj">df2</span>], axis=<span class="num">0</span>)  <span class="cm"># Stack vertikal</span>
+                        <br>
+                        pd.<span class="fn">concat</span>([<span class="obj">df1</span>, <span class="obj">df2</span>], axis=<span class="num">1</span>)  <span class="cm"># Stack horizontal</span>
+                        <br>
+                        pd.<span class="fn">merge</span>(<span class="obj">df1</span>, <span class="obj">df2</span>, on=<span class="str">'id'</span>, how=<span class="str">'inner'</span>)  <span class="cm"># default: inner</span>
+                        <br>
+                        pd.<span class="fn">merge</span>(<span class="obj">df1</span>, <span class="obj">df2</span>, left_on=<span class="str">'a'</span>, right_on=<span class="str">'b'</span>, how=<span class="str">'left'</span>)
+                        <br>
+                        <span class="obj">df1</span>.<span class="fn">join</span>(<span class="obj">df2</span>, how=<span class="str">'outer'</span>, lsuffix=<span class="str">'_l'</span>, rsuffix=<span class="str">'_r'</span>)
+                    </code>
                 </div>
             </div>
 
@@ -277,11 +329,17 @@ pd.<span class="fn">merge</span>(<span class="obj">df1</span>, <span class="obj"
                     <button onclick="copyCode(this)"
                         class="absolute top-3 right-3 px-2 py-1 bg-white/5 hover:bg-white/10 rounded text-xs text-gray-400 transition"><i
                             class="far fa-copy mr-1"></i>Copy</button>
-                    <code><span class="obj">df</span>.<span class="fn">sort_values</span>(<span class="str">'sales'</span>, ascending=<span class="kw">False</span>)
-<span class="obj">df</span>.<span class="fn">sort_values</span>([<span class="str">'dept'</span>, <span class="str">'salary'</span>], ascending=[<span class="kw">True</span>, <span class="kw">False</span>])
-<span class="obj">df</span>[<span class="str">'rank'</span>] = <span class="obj">df</span>[<span class="str">'score'</span>].<span class="fn">rank</span>(method=<span class="str">'dense'</span>, ascending=<span class="kw">False</span>)
-<span class="obj">df</span>.<span class="fn">nlargest</span>(<span class="num">5</span>, <span class="str">'salary'</span>)
-<span class="obj">df</span>.<span class="fn">nsmallest</span>(<span class="num">3</span>, <span class="str">'age'</span>)</code>
+                    <code>
+                        <span class="obj">df</span>.<span class="fn">sort_values</span>(<span class="str">'sales'</span>, ascending=<span class="kw">False</span>)
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">sort_values</span>([<span class="str">'dept'</span>, <span class="str">'salary'</span>], ascending=[<span class="kw">True</span>, <span class="kw">False</span>])
+                        <br>
+                        <span class="obj">df</span>[<span class="str">'rank'</span>] = <span class="obj">df</span>[<span class="str">'score'</span>].<span class="fn">rank</span>(method=<span class="str">'dense'</span>, ascending=<span class="kw">False</span>)
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">nlargest</span>(<span class="num">5</span>, <span class="str">'salary'</span>)
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">nsmallest</span>(<span class="num">3</span>, <span class="str">'age'</span>)
+                    </code>
                 </div>
             </div>
 
@@ -295,10 +353,14 @@ pd.<span class="fn">merge</span>(<span class="obj">df1</span>, <span class="obj"
                         class="absolute top-3 right-3 px-2 py-1 bg-white/5 hover:bg-white/10 rounded text-xs text-gray-400 transition"><i
                             class="far fa-copy mr-1"></i>Copy</button>
                     <code><span class="obj">df</span>.<span class="fn">to_csv</span>(<span class="str">'output.csv'</span>, index=<span class="kw">False</span>)
-<span class="obj">df</span>.<span class="fn">to_excel</span>(<span class="str">'output.xlsx'</span>, sheet_name=<span class="str">'Data'</span>)
-<span class="obj">df</span>.<span class="fn">to_sql</span>(<span class="str">'table_name'</span>, conn, if_exists=<span class="str">'replace'</span>)
-<span class="obj">df</span>.<span class="fn">to_json</span>(<span class="str">'output.json'</span>, orient=<span class="str">'records'</span>)
-<span class="obj">df</span>.<span class="fn">to_parquet</span>(<span class="str">'output.parquet'</span>)</code>
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">to_excel</span>(<span class="str">'output.xlsx'</span>, sheet_name=<span class="str">'Data'</span>)
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">to_sql</span>(<span class="str">'table_name'</span>, conn, if_exists=<span class="str">'replace'</span>)
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">to_json</span>(<span class="str">'output.json'</span>, orient=<span class="str">'records'</span>)
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">to_parquet</span>(<span class="str">'output.parquet'</span>)</code>
                 </div>
             </div>
 
@@ -312,11 +374,16 @@ pd.<span class="fn">merge</span>(<span class="obj">df1</span>, <span class="obj"
                         class="absolute top-3 right-3 px-2 py-1 bg-white/5 hover:bg-white/10 rounded text-xs text-gray-400 transition"><i
                             class="far fa-copy mr-1"></i>Copy</button>
                     <code><span class="obj">df</span>[<span class="str">'col'</span>].<span class="fn">plot</span>(kind=<span class="str">'line'</span>)
-<span class="obj">df</span>.<span class="fn">plot</span>(x=<span class="str">'date'</span>, y=<span class="str">'sales'</span>, kind=<span class="str">'bar'</span>)
-<span class="obj">df</span>.<span class="fn">plot</span>(kind=<span class="str">'scatter'</span>, x=<span class="str">'age'</span>, y=<span class="str">'income'</span>, alpha=<span class="num">0.5</span>)
-<span class="obj">df</span>.<span class="fn">plot</span>(kind=<span class="str">'hist'</span>, bins=<span class="num">30</span>, figsize=(<span class="num">8</span>,<span class="num">5</span>))
-<span class="obj">df</span>.<span class="fn">boxplot</span>(column=<span class="str">'salary'</span>, by=<span class="str">'gender'</span>)
-<span class="obj">df</span>.<span class="fn">plot</span>.<span class="fn">kde</span>() <span class="cm"># Density plot</span></code>
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">plot</span>(x=<span class="str">'date'</span>, y=<span class="str">'sales'</span>, kind=<span class="str">'bar'</span>)
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">plot</span>(kind=<span class="str">'scatter'</span>, x=<span class="str">'age'</span>, y=<span class="str">'income'</span>, alpha=<span class="num">0.5</span>)
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">plot</span>(kind=<span class="str">'hist'</span>, bins=<span class="num">30</span>, figsize=(<span class="num">8</span>,<span class="num">5</span>))
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">boxplot</span>(column=<span class="str">'salary'</span>, by=<span class="str">'gender'</span>)
+                        <br>
+                        <span class="obj">df</span>.< span class="fn">plot</ span >.< span class="fn">kde</ span >() < span class="cm"># Density plot</ span ></code>
                 </div>
             </div>
 
@@ -329,13 +396,21 @@ pd.<span class="fn">merge</span>(<span class="obj">df1</span>, <span class="obj"
                     <button onclick="copyCode(this)"
                         class="absolute top-3 right-3 px-2 py-1 bg-white/5 hover:bg-white/10 rounded text-xs text-gray-400 transition"><i
                             class="far fa-copy mr-1"></i>Copy</button>
-                    <code><span class="obj">df</span>[<span class="str">'date'</span>] = pd.<span class="fn">to_datetime</span>(<span class="obj">df</span>[<span class="str">'date'</span>])
-<span class="obj">df</span> = <span class="obj">df</span>.<span class="fn">set_index</span>(<span class="str">'date'</span>)
-<span class="obj">df</span>.<span class="fn">resample</span>(<span class="str">'M'</span>).<span class="fn">mean</span>()      <span class="cm"># Bulanan</span>
-<span class="obj">df</span>.<span class="fn">resample</span>(<span class="str">'D'</span>).<span class="fn">sum</span>()       <span class="cm"># Harian</span>
-<span class="obj">df</span>[<span class="str">'prev'</span>] = <span class="obj">df</span>[<span class="str">'value'</span>].<span class="fn">shift</span>(<span class="num">1</span>)
-<span class="obj">df</span>[<span class="str">'roll_mean'</span>] = <span class="obj">df</span>[<span class="str">'value'</span>].<span class="fn">rolling</span>(window=<span class="num">7</span>).<span class="fn">mean</span>()
-<span class="obj">df</span>.<span class="fn">between_time</span>(<span class="str">'09:00'</span>, <span class="str">'17:00'</span>)</code>
+                    <code>
+                        <span class="obj">df</span>[<span class="str">'date'</span>] = pd.<span class="fn">to_datetime</span>(<span class="obj">df</span>[<span class="str">'date'</span>])
+                        <br>
+                        <span class="obj">df</span> = <span class="obj">df</span>.<span class="fn">set_index</span>(<span class="str">'date'</span>)
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">resample</span>(<span class="str">'M'</span>).<span class="fn">mean</span>()      <span class="cm"># Bulanan</span>
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">resample</span>(<span class="str">'D'</span>).<span class="fn">sum</span>()       <span class="cm"># Harian</span>
+                        <br>
+                        <span class="obj">df</span>[<span class="str">'prev'</span>] = <span class="obj">df</span>[<span class="str">'value'</span>].<span class="fn">shift</span>(<span class="num">1</span>)
+                        <br>
+                        <span class="obj">df</span>[<span class="str">'roll_mean'</span>] = <span class="obj">df</span>[<span class="str">'value'</span>].<span class="fn">rolling</ span >(window=< span class="num">7</ span >).< span class="fn">mean</ span >()
+                        <br>
+                        <span class="obj">df</span>.<span class="fn">between_time</span>(<span class="str">'09:00'</span>, <span class="str">'17:00'</span>)
+                    </code>
                 </div>
             </div>
 
