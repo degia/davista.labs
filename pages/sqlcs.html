@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Cheat Sheet — DataMaster</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6C3CE1',
+                        secondary: '#F97316',
+                        dark: '#0F0F1A',
+                        darker: '#0A0A12',
+                        card: '#1A1A2E',
+                        accent: '#22D3EE',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* SQL Syntax Highlighting */
+        .sql-kw { color: #38bdf8; } /* SELECT, FROM, WHERE, CREATE */
+        .sql-fn { color: #facc15; } /* COUNT, AVG, UPPER, CONCAT */
+        .sql-str { color: #4ade80; } /* 'strings' */
+        .sql-num { color: #fb923c; } /* 123, 0.5 */
+        .sql-cm { color: #6b7280; } /* -- comments */
+        .sql-type { color: #a5b4fc; } /* INT, VARCHAR, DATE */
+    </style>
+</head>
+<body class="bg-dark text-gray-200 font-sans">
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="fixed top-0 w-full z-50 bg-darker/90 backdrop-blur-xl border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="../index.html" class="flex items-center gap-2 group">
+                    <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i class="fas fa-arrow-left text-white text-sm"></i>
+                    </div>
+                    <span class="text-lg font-bold text-white">Kembali ke <span class="text-primary">DataMaster</span></span>
+                </a>
+                <div class="flex items-center gap-4">
+                    <button onclick="window.print()" class="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-sm font-medium hover:bg-white/10 transition flex items-center gap-2">
+                        <i class="fas fa-print text-gray-400"></i> Print / PDF
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HEADER ========== -->
+    <header class="pt-24 pb-12 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+                <div>
+                    <span class="inline-block px-3 py-1 bg-blue-500/10 text-blue-400 text-xs font-bold rounded-full mb-3">🗃️ DATABASE</span>
+                    <h1 class="text-3xl sm:text-4xl font-black text-white mb-2">SQL <span class="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Cheat Sheet</span></h1>
+                    <p class="text-gray-400 max-w-2xl">Panduan lengkap Structured Query Language: DDL, DML, JOIN, Subquery, hingga optimasi performa query.</p>
+                </div>
+                <div class="flex items-center gap-2 bg-card/50 border border-white/5 rounded-xl p-2">
+                    <i class="fas fa-database text-blue-400 text-xl ml-2"></i>
+                    <span class="text-sm font-mono text-gray-300 pr-3">MySQL / PostgreSQL</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Search -->
+        <div class="relative mb-10 max-w-xl">
+            <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></i>
+            <input id="searchBox" type="text" placeholder="Cari perintah SQL (contoh: JOIN, GROUP BY, CASE WHEN)..." 
+                   class="w-full bg-card/50 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition">
+        </div>
+
+        <!-- Grid -->
+        <div id="cheatGrid" class="grid md:grid-cols-2 gap-6">
+            
+            <!-- 1. DDL -->
+            <div class="cheat-card bg-card/40 border border-white/5 rounded-2xl p-6 hover:border-blue-500/20 transition-all">
+                <h2 class="text-lg font-bold text-white mb-1 flex items-center gap-2">🏗️ Data Definition (DDL)</h2>
+                <p class="text-xs text-gray-500 mb-4">CREATE, ALTER, DROP & TRUNCATE tabel</p>
+                <div class="code-block relative bg-dark/60 rounded-xl p-4 font-mono text-sm space-y-1">
+                    <button onclick="copyCode(this)" class="absolute top-3 right-3 px-2 py-1 bg-white/5 hover:bg-white/10 rounded text-xs text-gray-400 transition"><i class="far fa-copy mr-1"></i>Copy</button>
+                    <code><span class="sql-kw">CREATE TABLE</span> pelanggan (
+    id <span class="sql-type">INT PRIMARY KEY</span>,
+    nama <span class="sql-type">VARCHAR</span>(<span class="sql-num">100</span>) <span class="sql-kw">NOT NULL</span>,
+    email <span class="sql-type">VARCHAR</span>(<span class="sql-num">150</span>) <span class="sql-kw">UNIQUE</span>,
+    dibuat <span class="sql-type">DATE</span> <span class="sql-kw">DEFAULT</span> <span class="sql-fn">CURRENT_DATE</span>
+);
+
+<span class="sql-kw">ALTER TABLE</span> pelanggan
+    <span class="sql-kw">ADD COLUMN</span> telepon <span class="sql-type">VARCHAR</span>(<span class="sql-num">20</span>);
+
+<span class="sql-kw">DROP TABLE IF EXISTS</span> pelanggan;
+<span class="sql-kw">TRUNCATE TABLE</span> pelanggan; <span class="sql-cm"># Kosongkan data</span></code>
+                </div>
+                <div class="mt-3 p-2 bg-red-500/10 border border-red-500/20 rounded-lg text-xs text-red-300">
+                    ⚠️ <strong>DROP</strong> menghapus tabel permanen & tidak bisa di-rollback!
+                </div>
+            </div>
+
+            <!-- 2. Data Types & Constraints -->
+            <div class="cheat-card bg-card/40 border border-white/5 rounded-2xl p-6 hover:border-blue-500/20 transition-all">
+                <h2 class="text-lg font-bold text-white mb-1 flex items-center gap-2">📦 Tipe Data & Constraints</h2>
+                <p class="text-xs text-gray-500 mb-4">Jenis data umum & aturan validasi kolom</p>
+                <div class="space-y-4 font-mono text-sm bg-dark/60 rounded-xl p-4">
+                    <div><span class="text-gray-400 font-bold">Data Types:</span></div>
+                    <ul class="grid grid-cols-2 gap-x-4 gap-y-1 text-xs text-gray-300 pl-4">
+                        <li><code class="text-blue-300">INT / BIGINT</code> - Bilangan bulat</li>
+                        <li><code class="text-blue-300">DECIMAL(p,s)</code> - Presisi tetap (uang)</li>
+                        <li><code class="text-blue-300">VARCHAR(n)</code> - Teks variabel</li>
+                        <li><code class="text-blue-300">TEXT</code> - Teks panjang</li>
+                        <li><code class="text-blue-300">DATE / DATETIME</code> - Tanggal & waktu</li>
+                        <li><code class="text-blue-300">BOOLEAN</code> - True / False</li>
+                    </ul>
+                    <div class="pt-2 border-t border-white/5"><span class="text-gray-400 font-bold">Constraints:</span></div>
+                    <ul class="grid grid-cols-2 gap-x-4 gap-y-1 text-xs text-gray-300 pl-4">
+                        <li><code class="text-yellow-300">PRIMARY KEY</code> - Unik & tidak null</li>
+                        <li><code class="text-yellow-300">FOREIGN KEY</code> - Relasi antar tabel</li>
+                        <li><code class="text-yellow-300">UNIQUE</code> - Nilai harus unik</li>
+                        <li><code class="text-yellow-300">CHECK</code> - Validasi kondisi</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3. DML -->
+            <div class="cheat-card bg-card/40 border border-white/5 rounded-2xl p-6 hover:border-blue-500/20 transition-all">
+                <h2 class="text-lg font-bold text-white mb-1 flex items-center gap-2">➕🔄💾 Data Manipulation (DML)</h2>
+                <p class="text-xs text-gray-500 mb-4">INSERT, UPDATE, & DELETE data</p>
+                <div class="code-block relative bg-dark/60 rounded-xl p-4 font-mono text-sm space-y-1">
+                    <button onclick="copyCode(this)" class="absolute top-3 right-3 px-2 py-1 bg-white/5 hover:bg-white/10 rounded text-xs text-gray-400 transition"><i class="far fa-copy mr-1"></i>Copy</button>
+                    <code><span class="sql-cm">-- Insert 1 baris</span>
+<span class="sql-kw">INSERT INTO</span> pelanggan (nama, email)
+<span class="sql-kw">VALUES</span> (<span class="sql-str">'Budi'</span>, <span class="sql-str">'budi@mail.com'</span>);
+
+<span class="sql-cm">-- Update (SELALU gunakan WHERE!)</span>
+<span class="sql-kw">UPDATE</span> pelanggan 
+<span class="sql-kw">SET</span> umur = <span class="sql-num">30</span>
+<span class="sql-kw">WHERE</span> id = <span class="sql-num">1</span>;
+
+<span class="sql-cm">-- Delete</span>
+<span class="sql-kw">DELETE FROM</span> pelanggan <span class="sql-kw">WHERE</span> id = <span class="sql-num">5</span>;</code>
+                </div>
+                <div class="mt-3 p-2 bg-yellow-500/10 border border-yellow-500/20 rounded-lg text-xs text-yellow-300">
+                    💡 <code class="bg-white/10 px-1 rounded">UPDATE/DELETE</code> tanpa <code class="bg-white/10 px-1 rounded">WHERE</code> akan mengubah/menghapus SEMUA baris!
+                </div>
+            </div>
+
+            <!-- 4. SELECT & Filter -->
+            <div class="cheat-card bg-card/40 border border-white/5 rounded-2xl p-6 hover:border-blue-500/20 transition-all">
+                <h2 class="text-lg font-bold text-white mb-1 flex items-center gap-2">🔍 SELECT & Filtering</h2>
+                <p class="text-xs text-gray-500 mb-4">Mengambil, memfilter, & mengurutkan data</p>
+                <div class="code-block relative bg-dark/60 rounded-xl p-4 font-mono text-sm space-y-1">
+                    <button onclick="copyCode(this)" class="absolute top-3 right-3 px-2 py-1 bg-white/5 hover:bg-white/10 rounded text-xs text-gray-400 transition"><i class="far fa-copy mr-1"></i>Copy</button>
+                    <code><span class="sql-kw">SELECT</span> nama <span class="sql-kw">AS</span> <span class="sql-str">'Nama'</span>, email
+<span class="sql-kw">FROM</span> pelanggan <span class="sql-kw">WHERE</span> umur > <span class="sql-num">20</span>
+  <span class="sql-kw">AND</span> kota <span class="sql-kw">IN</span> (<span class="sql-str">'JKT'</span>, <span class="sql-str">'BDG'</span>)
+  <span class="sql-kw">OR</span> email <span class="sql-kw">LIKE</span> <span class="sql-str">'%@gmail.com'</span>
+  <span class="sql-kw">ORDER BY</span> nama <span class="sql-kw">ASC</span>
+<span class="sql-kw">LIMIT</span> <span class="sql-num">10</span> <span class="sql-kw">OFFSET</span> <span class="sql-num">20</span>; <span class="sql-cm"># Pagination</span></code>
+                </div>
+            </div>
+
+            <!-- 5. Aggregate & Group By -->
+            <div class="cheat-card bg-card/40 border border-white/5 rounded-2xl p-6 hover:border-blue-500/20 transition-all">
+                <h2 class="text-lg font-bold text-white mb-1 flex items-center gap-2">📊 Agregasi & GROUP BY</h2>
+                <p class="text-xs text-gray-500 mb-4">Fungsi ringkasan & pengelompokan data</p>
+                <div class="code-block relative bg-dark/60 rounded-xl p-4 font-mono text-sm space-y-1">
+                    <button onclick="copyCode(this)" class="absolute top-3 right-3 px-2 py-1 bg-white/5 hover:bg-white/10 rounded text-xs text-gray-400 transition"><i class="far fa-copy mr-1"></i>Copy</button>
+                    <code><span class="sql-kw">SELECT</span> kota, 
+       <span class="sql-fn">COUNT</span>(*) <span class="sql-kw">AS</span> total,
+       <span class="sql-fn">AVG</span>(gaji) <span class="sql-kw">AS</span> rata_rata
+<span class="sql-kw">FROM</span> karyawan
+<span class="sql-kw">GROUP BY</span> kota
+<span class="sql-kw">HAVING</span> <span class="sql-fn">COUNT</span>(*) > <span class="sql-num">5</span>
+<span class="sql-kw">ORDER BY</span> total <span class="sql-kw">DESC</span>;
+
+<span class="sql-cm"># HAVING = WHERE untuk GROUP BY</span></code>
+                </div>
+            </div>
+
+            <!-- 6. String & Date Functions -->
+            <div class="cheat-card bg-card/40 border border-white/5 rounded-2xl p-6 hover:border-blue-500/20 transition-all">
+                <h2 class="text-lg font-bold text-white mb-1 flex items-center gap-2">🧮 String & Date Functions</h2>
+                <p class="text-xs text-gray-500 mb-4">Manipulasi teks & operasi temporal</p>
+                <div class="code-block relative bg-dark/60 rounded-xl p-4 font-mono text-sm space-y-1">
+                    <button onclick="copyCode(this)" class="absolute top-3 right-3 px-2 py-1 bg-white/5 hover:bg-white/10 rounded text-xs text-gray-400 transition"><i class="far fa-copy mr-1"></i>Copy</button>
+                    <code><span class="sql-fn">UPPER</span>(nama)          <span class="sql-cm"># BUDI</span>
+<span class="sql-fn">LOWER</span>(email)         <span class="sql-cm"># budi@mail.com</span>
+<span class="sql-fn">CONCAT</span>(nama, <span class="sql-str">' - '</span>, kota)
+<span class="sql-fn">SUBSTRING</span>(nama, <span class="sql-num">1</span>, <span class="sql-num">3</span>) <span class="sql-cm"># 3 huruf pertama</span>
+<span class="sql-fn">LENGTH</span>(nama)
+<span class="sql-fn">TRIM</span>(nama)
+
+<span class="sql-fn">NOW</span>()               <span class="sql-cm"># Timestamp sekarang</span>
+<span class="sql-fn">DATEDIFF</span>(<span class="sql-fn">NOW</span>(), tgl_lahir)
+<span class="sql-kw">SELECT</span> * <span class="sql-kw">FROM</span> log 
+  <span class="sql-kw">WHERE</span> created_at >= <span class="sql-str">'2024-01-01'</span>;</code>
+                </div>
+            </div>
+
+            <!-- 7. JOIN -->
+            <div class="cheat-card bg-card/40 border border-white/5 rounded-2xl p-6 hover:border-blue-500/20 transition-all">
+                <h2 class="text-lg font-bold text-white mb-1 flex items-center gap-2">🔗 JOIN Operations</h2>
+                <p class="text-xs text-gray-500 mb-4">INNER, LEFT, RIGHT, SELF & Multi-table JOIN</p>
+                <div class="code-block relative bg-dark/60 rounded-xl p-4 font-mono text-sm space-y-1">
+                    <button onclick="copyCode(this)" class="absolute top-3 right-3 px-2 py-1 bg-white/5 hover:bg-white/10 rounded text-xs text-gray-400 transition"><i class="far fa-copy mr-1"></i>Copy</button>
+                    <code><span class="sql-cm">-- INNER JOIN (cocok di kedua tabel)</span>
+<span class="sql-kw">SELECT</span> p.nama, o.total 
+<span class="sql-kw">FROM</span> pelanggan p
+<span class="sql-kw">INNER JOIN</span> pesanan o <span class="sql-kw">ON</span> p.id = o.id_pelanggan;
+
+<span class="sql-cm">-- LEFT JOIN (semua kiri + NULL kanan)</span>
+<span class="sql-kw">LEFT JOIN</span> pesanan o <span class="sql-kw">ON</span> p.id = o.id_pelanggan
+<span class="sql-kw">WHERE</span> o.id <span class="sql-kw">IS NULL</span>; <span class="sql-cm"># Hanya yang belum pesan</span>
+
+<span class="sql-cm">-- Multi Table</span>
+<span class="sql-kw">JOIN</span> item_pesanan i <span class="sql-kw">ON</span> o.id = i.id_pesanan
+<span class="sql-kw">JOIN</span> produk pr <span class="sql-kw">ON</span> i.id_produk = pr.id;</code>
+                </div>
+            </div>
+
+            <!-- 8. Subquery & Advanced -->
+            <div class="cheat-card bg-card/40 border border-white/5 rounded-2xl p-6 hover:border-blue-500/20 transition-all">
+                <h2 class="text-lg font-bold text-white mb-1 flex items-center gap-2">🪆 Subquery & CASE</h2>
+                <p class="text-xs text-gray-500 mb-4">Query bersarang, EXISTS, & logika kondisional</p>
+                <div class="code-block relative bg-dark/60 rounded-xl p-4 font-mono text-sm space-y-1">
+                    <button onclick="copyCode(this)" class="absolute top-3 right-3 px-2 py-1 bg-white/5 hover:bg-white/10 rounded text-xs text-gray-400 transition"><i class="far fa-copy mr-1"></i>Copy</button>
+                    <code><span class="sql-cm">-- Subquery di WHERE</span>
+<span class="sql-kw">SELECT</span> nama <span class="sql-kw">FROM</span> produk
+<span class="sql-kw">WHERE</span> harga > (<span class="sql-kw">SELECT</span> <span class="sql-fn">AVG</span>(harga) <span class="sql-kw">FROM</span> produk);
+
+<span class="sql-cm">-- EXISTS (lebih cepat dari IN)</span>
+<span class="sql-kw">WHERE EXISTS</span> (<span class="sql-kw">SELECT</span> <span class="sql-num">1</span> <span class="sql-kw">FROM</span> pesanan <span class="sql-kw">WHERE</span> id = p.id);
+
+<span class="sql-cm">-- CASE WHEN (If-Else SQL)</span>
+<span class="sql-kw">SELECT</span> nama,
+  <span class="sql-kw">CASE</span>
+    <span class="sql-kw">WHEN</span> skor >= <span class="sql-num">80</span> <span class="sql-kw">THEN</span> <span class="sql-str">'A'</span>
+    <span class="sql-kw">WHEN</span> skor >= <span class="sql-num">70</span> <span class="sql-kw">THEN</span> <span class="sql-str">'B'</span>
+    <span class="sql-kw">ELSE</span> <span class="sql-str">'C'</span>
+  <span class="sql-kw">END</span> <span class="sql-kw">AS</span> grade
+<span class="sql-kw">FROM</span> nilai;</code>
+                </div>
+            </div>
+
+            <!-- 9. Execution & Performance -->
+            <div class="cheat-card bg-card/40 border border-white/5 rounded-2xl p-6 hover:border-blue-500/20 transition-all">
+                <h2 class="text-lg font-bold text-white mb-1 flex items-center gap-2">⚙️ Urutan Eksekusi & Performa</h2>
+                <p class="text-xs text-gray-500 mb-4">Bagaimana database memproses query & tips optimasi</p>
+                <div class="bg-dark/60 rounded-xl p-4 font-mono text-sm space-y-2">
+                    <div class="text-gray-400">🔄 <strong>Urutan Eksekusi Engine:</strong></div>
+                    <div class="flex flex-wrap gap-1 text-xs">
+                        <span class="px-2 py-1 bg-blue-500/10 text-blue-300 rounded">1. FROM</span>
+                        <span class="px-2 py-1 bg-blue-500/10 text-blue-300 rounded">2. WHERE</span>
+                        <span class="px-2 py-1 bg-blue-500/10 text-blue-300 rounded">3. GROUP BY</span>
+                        <span class="px-2 py-1 bg-blue-500/10 text-blue-300 rounded">4. HAVING</span>
+                        <span class="px-2 py-1 bg-blue-500/10 text-blue-300 rounded">5. SELECT</span>
+                        <span class="px-2 py-1 bg-blue-500/10 text-blue-300 rounded">6. ORDER BY</span>
+                        <span class="px-2 py-1 bg-blue-500/10 text-blue-300 rounded">7. LIMIT</span>
+                    </div>
+                    <div class="pt-2 border-t border-white/5 text-xs text-gray-300 space-y-1">
+                        <div>✅ Gunakan <code class="text-green-300">INDEX</code> pada kolom filter/JOIN</div>
+                        <div>✅ Hindari <code class="text-yellow-300">SELECT *</code>, ambil kolom spesifik</div>
+                        <div>✅ Pakai <code class="text-yellow-300">EXPLAIN SELECT...</code> untuk cek plan</div>
+                        <div>❌ Hindari fungsi di WHERE (misal: <code>YEAR(tgl)</code>), pakai range</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10. Transaction, DCL & View -->
+            <div class="cheat-card bg-card/40 border border-white/5 rounded-2xl p-6 hover:border-blue-500/20 transition-all">
+                <h2 class="text-lg font-bold text-white mb-1 flex items-center gap-2">🔐 Transaction, DCL & View</h2>
+                <p class="text-xs text-gray-500 mb-4">Atomic operations, hak akses, & tabel virtual</p>
+                <div class="code-block relative bg-dark/60 rounded-xl p-4 font-mono text-sm space-y-1">
+                    <button onclick="copyCode(this)" class="absolute top-3 right-3 px-2 py-1 bg-white/5 hover:bg-white/10 rounded text-xs text-gray-400 transition"><i class="far fa-copy mr-1"></i>Copy</button>
+                    <code><span class="sql-cm">-- Transaction (All or Nothing)</span>
+<span class="sql-kw">START TRANSACTION</span>;
+<span class="sql-kw">UPDATE</span> akun <span class="sql-kw">SET</span> saldo = saldo - <span class="sql-num">1000</span> <span class="sql-kw">WHERE</span> id = <span class="sql-num">1</span>;
+<span class="sql-kw">UPDATE</span> akun <span class="sql-kw">SET</span> saldo = saldo + <span class="sql-num">1000</span> <span class="sql-kw">WHERE</span> id = <span class="sql-num">2</span>;
+<span class="sql-kw">COMMIT</span>; <span class="sql-cm"># atau ROLLBACK; jika error</span>
+
+<span class="sql-cm">-- View (Tabel Virtual)</span>
+<span class="sql-kw">CREATE VIEW</span> v_detail <span class="sql-kw">AS</span>
+<span class="sql-kw">SELECT</span> p.nama, o.total <span class="sql-kw">FROM</span> pesanan o
+<span class="sql-kw">JOIN</span> pelanggan p <span class="sql-kw">ON</span> o.id_p = p.id;
+
+<span class="sql-kw">GRANT SELECT</span> <span class="sql-kw">ON</span> db.* <span class="sql-kw">TO</span> <span class="sql-str">'user'</span>@<span class="sql-str">'%'</span>;</code>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="bg-darker border-t border-white/5 py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-500 text-sm">© 2026 DataMaster. SQL Cheat Sheet dibuat untuk kemudahan belajar & referensi cepat.</p>
+            <a href="../index.html" class="text-primary text-sm hover:underline mt-2 inline-block">← Kembali ke Beranda</a>
+        </div>
+    </footer>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script>
+        // Copy to Clipboard
+        function copyCode(btn) {
+            const code = btn.nextElementSibling.innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                const original = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check mr-1"></i>Copied!';
+                btn.classList.add('text-green-400', 'bg-green-500/10');
+                setTimeout(() => {
+                    btn.innerHTML = original;
+                    btn.classList.remove('text-green-400', 'bg-green-500/10');
+                }, 2000);
+            });
+        }
+
+        // Search Filter
+        const searchBox = document.getElementById('searchBox');
+        const cards = document.querySelectorAll('.cheat-card');
+        
+        searchBox.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                card.style.display = text.includes(query) ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
